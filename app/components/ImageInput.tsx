@@ -1,4 +1,4 @@
-import { Upload } from '@phosphor-icons/react/dist/ssr'
+import { Upload } from '@phosphor-icons/react/dist/ssr/Upload'
 import { ChangeEvent, useCallback, useState } from 'react'
 
 export function ImageInput() {

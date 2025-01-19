@@ -1,4 +1,4 @@
-import { PawPrint } from '@phosphor-icons/react/dist/ssr'
+import { PawPrint } from '@phosphor-icons/react/dist/ssr/PawPrint'
 import { Link } from '@remix-run/react'
 import LocationInput from '~/components/LocationInput'
 import { Logo } from '~/components/Logo'
