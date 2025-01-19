@@ -82,9 +82,9 @@ export default function FoundScreen() {
       />
       <div className="h-4" />
       <Form method="post" encType="multipart/form-data">
-        <div className="flex gap-x-4">
+        <div className="flex gap-x-3">
           <ImageInput />
-          <div className="flex-1">
+          <div className="flex-1 px-2 py-1 bg-cyan-900/50 rounded w-full">
             <input
               placeholder="Título: 'Perro <raza> perdido/encontrado'"
               id="title"
@@ -94,16 +94,16 @@ export default function FoundScreen() {
             <div className="h-2" />
             <textarea
               placeholder="Raza, color, detalles que ayuden a la identifición"
-              className="focus:outline-none opacity-70 rounded w-full !h-[76px] resize-none"
+              className="focus:outline-none opacity-70 rounded w-full !h-[58px] resize-none"
             />
           </div>
         </div>
-        <div className="h-2" />
+        <div className="h-3" />
         <input
           placeholder="Teléfono de contacto"
           className="focus:outline-none px-2 py-1 bg-cyan-900/50 rounded w-full"
         />
-        <div className="h-4" />
+        <div className="h-3" />
         <button className="w-full" type="submit">
           Publicar
         </button>

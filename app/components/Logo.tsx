@@ -1,4 +1,4 @@
-import { Cat, Dog } from '@phosphor-icons/react'
+import { Cat, Dog } from '@phosphor-icons/react/dist/ssr'
 import { Link } from '@remix-run/react'
 
 export function Logo() {
