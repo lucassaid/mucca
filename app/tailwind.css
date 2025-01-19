@@ -1,12 +1,103 @@
+@import url('mapbox-gl/dist/mapbox-gl.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+  @apply bg-cyan-950;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
+  }
+}
+
+@layer base {
+  h1 {
+    @apply text-2xl sm:text-3xl lg:text-4xl tracking-tight;
+  }
+
+  h2 {
+    @apply text-xl sm:text-2xl lg:text-3xl tracking-tight;
+  }
+
+  h3 {
+    @apply text-lg sm:text-xl lg:text-2xl tracking-tight;
+  }
+
+  h4 {
+    @apply text-base lg:text-lg tracking-tight;
+  }
+
+  h5 {
+    @apply lg:text-xl tracking-tight;
+  }
+
+  progress::-webkit-progress-bar {
+    height: 3px;
+    background-color: #bbb;
+  }
+
+  progress::-webkit-progress-value {
+    background-color: black;
+  }
+
+  table {
+    @apply text-xs md:text-sm;
+  }
+
+  th {
+    @apply pb-2 font-semibold text-accent whitespace-nowrap select-none sticky top-0 bg-slate-100 z-40;
+  }
+
+  td {
+    @apply py-0;
+  }
+
+  th,
+  td {
+    @apply px-1 md:px-4 text-left;
+  }
+
+  th:first-child,
+  td:first-child {
+    @apply pl-0;
+  }
+
+  th:last-child,
+  td:last-child {
+    @apply pr-0;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply bg-transparent;
+  }
+
+  select {
+    appearance: none;
+    padding: 0 2rem 0 0.5rem !important;
+    background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+      linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position: calc(100% - 15px) calc(0.9em),
+      calc(100% - 10px) calc(0.9em);
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+  }
+
+  button {
+    @apply bg-white text-cyan-950 px-3 py-2 rounded-lg;
+  }
+
+  label {
+    @apply text-xs;
+  }
+}
+
+@layer utilities {
+  .input {
+    @apply rounded-md h-8 px-2 text-base md:text-sm focus:outline-none focus:ring focus:ring-cyan-800 border border-slate-300 disabled:opacity-60;
   }
 }
