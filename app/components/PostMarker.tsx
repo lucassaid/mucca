@@ -17,10 +17,10 @@ export function PostMarker({ post, map }: PostMarkerProps) {
   return (
     <div
       ref={markerElementRef}
-      className="w-20 text-black group hover:w-72 p-1 hover:p-2 rounded-lg bg-white z-0 hover:z-10"
+      className="w-32 text-black group hover:w-72 p-1 hover:p-2 rounded-lg bg-white z-0 hover:z-10"
     >
       <img
-        className="w-full h-10 group-hover:h-14 rounded object-cover"
+        className="w-full h-14 group-hover:h-28 rounded object-cover"
         src={post.image}
         alt={post.title}
       />

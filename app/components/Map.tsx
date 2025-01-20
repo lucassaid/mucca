@@ -17,7 +17,7 @@ mapboxgl.accessToken =
 export default function Map({
   requestGeo = false,
   children,
-  height = 480,
+  height = 400,
 }: SearchMapProps) {
   const [map, setMap] = useState<mapboxgl.Map | null>(null)
 
