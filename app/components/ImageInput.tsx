@@ -16,7 +16,7 @@ export function ImageInput() {
       <label
         htmlFor="image"
         className={`
-          size-28 rounded-lg shrink-0 inset-0 cursor-pointer flex items-center justify-center
+          md:size-28 py-3 rounded-lg shrink-0 inset-0 cursor-pointer flex items-center justify-center
           ${
             imagePreviewSrc
               ? 'ring ring-cyan-800'
@@ -31,7 +31,10 @@ export function ImageInput() {
             alt=""
           />
         )}
-        <Upload size={20} />
+        <div>
+          <Upload size={20} className="flex mx-auto mb-1" />
+          Cargar foto
+        </div>
       </label>
       <input
         type="file"
