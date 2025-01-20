@@ -16,7 +16,7 @@ export function ImageInput() {
       <label
         htmlFor="image"
         className={`
-          md:size-28 py-3 rounded-lg shrink-0 inset-0 cursor-pointer flex items-center justify-center
+          h-32 md:w-32  rounded-lg shrink-0 cursor-pointer flex items-center justify-center
           ${
             imagePreviewSrc
               ? 'ring ring-cyan-800'
@@ -24,17 +24,18 @@ export function ImageInput() {
           }  
         `}
       >
-        {imagePreviewSrc && (
+        {imagePreviewSrc ? (
           <img
-            className="size-28 rounded-lg shrink-0 object-cover"
+            className="w-full h-full rounded-lg shrink-0 object-cover"
             src={imagePreviewSrc}
             alt=""
           />
+        ) : (
+          <div>
+            <Upload size={20} className="flex mx-auto mb-1" />
+            Cargar foto
+          </div>
         )}
-        <div>
-          <Upload size={20} className="flex mx-auto mb-1" />
-          Cargar foto
-        </div>
       </label>
       <input
         type="file"
@@ -43,6 +44,7 @@ export function ImageInput() {
         hidden
         accept="image/*"
         onChange={handleImageChange}
+        required
       />
       <input
         type="text"

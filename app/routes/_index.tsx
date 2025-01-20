@@ -1,43 +1,55 @@
 import { PawPrint } from '@phosphor-icons/react/dist/ssr/PawPrint'
-import { Link } from '@remix-run/react'
-import LocationInput from '~/components/LocationInput'
+import { LoaderFunctionArgs } from '@remix-run/node'
+import { Link, useLoaderData } from '@remix-run/react'
 import { Logo } from '~/components/Logo'
-import { StrayedPetRow } from '~/components/StrayedPetRow'
-import { mockPosts } from '~/mocks/posts'
+import Map from '~/components/Map'
+import { ParamSelect } from '~/components/ParamSelect'
+import { PostMarker } from '~/components/PostMarker'
+import { postsCollection } from '~/db.server'
+import { StrayedPetKind } from '~/types/StrayedPet'
+
+export async function loader(args: LoaderFunctionArgs) {
+  const url = new URL(args.request.url)
+  const kind = (url.searchParams.get('kind') as StrayedPetKind) || 'dog'
+  const posts = await postsCollection.find({ kind }).toArray()
+
+  return {
+    posts: posts.map((p) => ({ ...p, _id: p._id.toString() })),
+  }
+}
 
 export default function SearchScreen() {
+  const { posts } = useLoaderData<typeof loader>()
+
   return (
-    <div className="px-4 max-w-xl mx-auto">
-      <div className="py-4 flex justify-between">
+    <div className="max-w-4xl mx-auto px-4">
+      <div className="py-3 flex justify-between">
         <Logo />
-        <select className="input">
-          <option>Perros</option>
-          <option>Gatos</option>
-        </select>
+        <ParamSelect defaultParamValue="dog" name="kind" className="input">
+          <option value="dog">Perros</option>
+          <option value="cat">Gatos</option>
+        </ParamSelect>
       </div>
-      <LocationInput
-        requestGeo
-        location={[0, 0]}
-        onLocationChange={console.log}
-        kind="dog"
-      />
-      <div className="h-3" />
-      {mockPosts.map((post) => (
-        <StrayedPetRow key={post.title} {...post} />
-      ))}
-      <hr className="my-10 opacity-20" />
-      <div className="text-center">
+      <Map requestGeo>
+        {({ map }) => {
+          if (!map) return ''
+          return posts.map((post) => (
+            <PostMarker key={post._id} map={map} post={post} />
+          ))
+        }}
+      </Map>
+      <div className="h-6" />
+      <div className="text-center max-w-lg mx-auto">
         <p>No encuentras a tu mascota?</p>
-        <p className="opacity-80 text-sm mt-2">
-          Usa el mapa para seguir buscando. Si no logras encontrarla, crea una
-          publicación en pocos segundos, no necesitas registrarte:
+        <p className="opacity-80 text-sm mt-1">
+          Crea una publicación en pocos segundos, no necesitas registrarte:
         </p>
-        <br />
+        <div className="h-4" />
         <Link to="new">
           <button>Publicar mascota extraviada</button>
         </Link>
       </div>
-      <div className="h-16" />
+      <div className="h-10" />
       <p className="opacity-60 p-3 text-xs text-center">
         Sin ánimo de lucro, hecho por y para los amantes de las
         mascotas&nbsp;&nbsp;

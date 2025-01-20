@@ -5,10 +5,12 @@ export interface StrayedPetPost {
   title: string
   image: string
   description: string
-  date: Date
+  createdAt: Date
   tags: string[]
-  contact: string
-  location: [number, number]
-  postedByOwner: boolean
+  phone: string
+  location: {
+    type: 'Point'
+    coordinates: [longitude: number, latitude: number]
+  }
   reuniteDate: Date | null
 }
